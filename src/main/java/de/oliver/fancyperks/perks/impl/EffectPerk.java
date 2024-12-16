@@ -19,7 +19,14 @@ public class EffectPerk extends Perk {
     public boolean grant(Player player) {
         if(!super.grant(player)) return false;
 
-        player.addPotionEffect(new PotionEffect(effectType, -1, 0, true, false, false));
+        String effect = String.valueOf(effectType);
+        if(effect.equals("CraftPotionEffectType[minecraft:speed]")) {
+            player.addPotionEffect(new PotionEffect(effectType, -1, 2, true, false, false));
+        } else if (effect.equals("CraftPotionEffectType[minecraft:haste]")) {
+            player.addPotionEffect(new PotionEffect(effectType, -1, 10, true, false, false));
+        } else {
+            player.addPotionEffect(new PotionEffect(effectType, -1, 0, true, false, false));
+        }
         return true;
     }
 
